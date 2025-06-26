@@ -1,0 +1,21 @@
+{
+    "name": "struktal/struktal-auth",
+    "description": "PHP library for user authentication in Struktal applications",
+    "keywords": [
+        "strukal",
+        "authentication"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload":{
+        "psr-4": {
+            "struktal\\Auth\\": "src/",
+            "struktal\\ORM\\": "src/orm/"
+        }
+    },
+    "require": {
+        "php": ">=8.2.0",
+        "struktal/struktal-router": "~1.1.0",
+        "struktal/struktal-orm": "~1.0.1"
+    }
+}
