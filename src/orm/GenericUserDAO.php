@@ -2,6 +2,8 @@
 
 namespace struktal\ORM;
 
+use \struktal\Auth\LoginError;
+
 class GenericUserDAO extends GenericObjectDAO {
     /**
      * Authentication of a login
@@ -10,7 +12,7 @@ class GenericUserDAO extends GenericObjectDAO {
      * @param string $password Provided password
      * @return GenericUser|LoginError User or error code if login failed
      */
-    public function login(string $login, bool $loginWithEmail, string $password): GenericUser|int {
+    public function login(string $login, bool $loginWithEmail, string $password): GenericUser|LoginError {
         if($loginWithEmail) {
             $login = strtolower($login);
             $user = $this->getObject([

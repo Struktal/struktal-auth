@@ -1,6 +1,6 @@
 <?php
 
-namespace struktal\ORM;
+namespace struktal\Auth;
 
 enum LoginError {
     case USER_NOT_FOUND;
