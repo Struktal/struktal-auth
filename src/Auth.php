@@ -6,6 +6,25 @@ use \struktal\Router\Router;
 use \struktal\ORM\GenericUser;
 
 class Auth {
+    private static string $userObjectName = "\struktal\ORM\GenericUser";
+
+    /**
+     * Sets the user object name to be used for authentication
+     * @param string $userObjectName
+     * throws \InvalidArgumentException if the class does not exist or is not a subclass of GenericUser
+     */
+    public static function setUserObjectName(string $userObjectName): void {
+        if(!class_exists($userObjectName)) {
+            throw new \InvalidArgumentException("The user object name must be a valid class name.");
+        }
+
+        if(!is_subclass_of($userObjectName, GenericUser::class)) {
+            throw new \InvalidArgumentException("The user object name must be a subclass of " . GenericUser::class);
+        }
+
+        self::$userObjectName = $userObjectName;
+    }
+
     /**
      * Checks whether the user is logged in with the session variable
      * @return bool
@@ -23,7 +42,7 @@ class Auth {
             return null;
         }
 
-        $user = GenericUser::dao()->getObject([
+        $user = (self::$userObjectName)::dao()->getObject([
             "id" => $_SESSION["userId"],
             "emailVerified" => true
         ]);

@@ -69,6 +69,12 @@ Finally, you can create the database table.
 To do so, orientate yourself on the example above for the `GenericUser` table.
 You have to extend the SQL code with your custom fields and change the table name to the name of your custom user object (e.g. `User`).
 
+In your application's startup script, you then have to register the custom user object and DAO:
+
+```php
+\struktal\Auth\Auth::setUserObjectName(User::class);
+```
+
 ## Registering new Users
 
 To register a new user, use the `register()`, which creates a new user object, sets the required fields with the passed parameters, and saves it to the database.
