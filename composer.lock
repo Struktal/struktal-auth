@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b14cc239f0fb1ff1a11d2dfe7e4de7d",
+    "content-hash": "4cef4b101d28692bb8705520c07fcd23",
     "packages": [
         {
             "name": "struktal/struktal-orm",
@@ -51,16 +51,16 @@
         },
         {
             "name": "struktal/struktal-router",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Struktal/struktal-router.git",
-                "reference": "f8641e7511896cdabdf09ed2481d0e96ac46568b"
+                "reference": "93e4ceb05fda6bf4028dd719b408da4d13c77016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Struktal/struktal-router/zipball/f8641e7511896cdabdf09ed2481d0e96ac46568b",
-                "reference": "f8641e7511896cdabdf09ed2481d0e96ac46568b",
+                "url": "https://api.github.com/repos/Struktal/struktal-router/zipball/93e4ceb05fda6bf4028dd719b408da4d13c77016",
+                "reference": "93e4ceb05fda6bf4028dd719b408da4d13c77016",
                 "shasum": ""
             },
             "require": {
@@ -82,9 +82,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Struktal/struktal-router/issues",
-                "source": "https://github.com/Struktal/struktal-router/tree/1.1.0"
+                "source": "https://github.com/Struktal/struktal-router/tree/1.2.0"
             },
-            "time": "2025-06-16T20:18:21+00:00"
+            "time": "2025-08-01T15:39:22+00:00"
         }
     ],
     "packages-dev": [],
