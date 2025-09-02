@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cef4b101d28692bb8705520c07fcd23",
+    "content-hash": "d2be06395f0f82d5e93f73244edca529",
     "packages": [
         {
             "name": "struktal/struktal-orm",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Struktal/struktal-orm.git",
-                "reference": "a0950c3a3c06344e2717bba9fcebcd63de4f6be6"
+                "reference": "4539a2f496ef785b3e92f3ba9117733a3bf9318c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Struktal/struktal-orm/zipball/a0950c3a3c06344e2717bba9fcebcd63de4f6be6",
-                "reference": "a0950c3a3c06344e2717bba9fcebcd63de4f6be6",
+                "url": "https://api.github.com/repos/Struktal/struktal-orm/zipball/4539a2f496ef785b3e92f3ba9117733a3bf9318c",
+                "reference": "4539a2f496ef785b3e92f3ba9117733a3bf9318c",
                 "shasum": ""
             },
             "require": {
@@ -45,46 +45,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Struktal/struktal-orm/issues",
-                "source": "https://github.com/Struktal/struktal-orm/tree/1.0.1"
+                "source": "https://github.com/Struktal/struktal-orm/tree/1.0.2"
             },
-            "time": "2025-06-17T13:02:15+00:00"
-        },
-        {
-            "name": "struktal/struktal-router",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Struktal/struktal-router.git",
-                "reference": "93e4ceb05fda6bf4028dd719b408da4d13c77016"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Struktal/struktal-router/zipball/93e4ceb05fda6bf4028dd719b408da4d13c77016",
-                "reference": "93e4ceb05fda6bf4028dd719b408da4d13c77016",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "struktal\\Router\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHP router for the Struktal framework",
-            "keywords": [
-                "router"
-            ],
-            "support": {
-                "issues": "https://github.com/Struktal/struktal-router/issues",
-                "source": "https://github.com/Struktal/struktal-router/tree/1.2.0"
-            },
-            "time": "2025-08-01T15:39:22+00:00"
+            "time": "2025-08-12T11:46:47+00:00"
         }
     ],
     "packages-dev": [],

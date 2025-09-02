@@ -2,7 +2,6 @@
 
 namespace struktal\Auth;
 
-use \struktal\Router\Router;
 use \struktal\ORM\GenericUser;
 
 class Auth {
@@ -63,11 +62,13 @@ class Auth {
     public static function enforceLogin(int $requiredPermissionLevel, string $redirect): ?GenericUser {
         $user = self::getLoggedInUser();
         if(!$user instanceof GenericUser) {
-            Router::redirect($redirect);
+            header("Location: " . $redirect);
+            exit;
         }
 
         if($user->getPermissionLevel() < $requiredPermissionLevel) {
-            Router::redirect($redirect);
+            header("Location: " . $redirect);
+            exit;
         }
 
         return $user;

@@ -15,7 +15,6 @@
     },
     "require": {
         "php": ">=8.2.0",
-        "struktal/struktal-router": "^1.2.0",
         "struktal/struktal-orm": "^1.0.1"
     }
 }
