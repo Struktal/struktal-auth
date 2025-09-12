@@ -15,6 +15,6 @@
     },
     "require": {
         "php": ">=8.2.0",
-        "struktal/struktal-orm": "^1.0.1"
+        "struktal/struktal-orm": "^2.2.0"
     }
 }

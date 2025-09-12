@@ -55,18 +55,18 @@ class Auth {
 
     /**
      * Enforces the user to be logged in with a minimum permission level, and redirects the user if they do not meet the requirements
-     * @param int    $requiredPermissionLevel
-     * @param string $redirect
+     * @param PermissionLevel $requiredPermissionLevel
+     * @param string          $redirect
      * @return GenericUser|null
      */
-    public static function enforceLogin(int $requiredPermissionLevel, string $redirect): ?GenericUser {
+    public static function enforceLogin(PermissionLevel $requiredPermissionLevel, string $redirect): ?GenericUser {
         $user = self::getLoggedInUser();
         if(!$user instanceof GenericUser) {
             header("Location: " . $redirect);
             exit;
         }
 
-        if($user->getPermissionLevel() < $requiredPermissionLevel) {
+        if($user->getPermissionLevel()->value() < $requiredPermissionLevel->value()) {
             header("Location: " . $redirect);
             exit;
         }

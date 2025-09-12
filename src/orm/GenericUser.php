@@ -3,13 +3,14 @@
 namespace struktal\ORM;
 
 use \DateTimeImmutable;
+use \struktal\Auth\PermissionLevel;
 
-class GenericUser extends GenericObject {
+class GenericUser extends GenericEntity {
     public string $username = "";
     public string $password = "";
     public string $email = "";
     public bool $emailVerified = false;
-    public int $permissionLevel = 0;
+    public ?PermissionLevel $permissionLevel = null;
     public ?string $oneTimePassword = null;
     public ?DateTimeImmutable $oneTimePasswordExpiration = null;
 
@@ -81,17 +82,17 @@ class GenericUser extends GenericObject {
 
     /**
      * Returns the user's permission level
-     * @return int
+     * @return ?PermissionLevel
      */
-    public function getPermissionLevel(): int {
+    public function getPermissionLevel(): ?PermissionLevel {
         return $this->permissionLevel;
     }
 
     /**
      * Sets the user's permission level
-     * @param int $permissionLevel
+     * @param ?PermissionLevel $permissionLevel
      */
-    public function setPermissionLevel(int $permissionLevel): void {
+    public function setPermissionLevel(?PermissionLevel $permissionLevel): void {
         $this->permissionLevel = $permissionLevel;
     }
 
