@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7babbb4852826b9ac5f8ce5f7dd7ccba",
+    "content-hash": "a7a7ef4495c31576ea82d6c279d0e91d",
     "packages": [
         {
             "name": "struktal/struktal-orm",
-            "version": "2.2.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Struktal/struktal-orm.git",
-                "reference": "6505fad53f6bfc57f0e866e144e6afdd21f91ffd"
+                "reference": "169a8a4584f54ce4bf997f18590d0e75726d8a24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Struktal/struktal-orm/zipball/6505fad53f6bfc57f0e866e144e6afdd21f91ffd",
-                "reference": "6505fad53f6bfc57f0e866e144e6afdd21f91ffd",
+                "url": "https://api.github.com/repos/Struktal/struktal-orm/zipball/169a8a4584f54ce4bf997f18590d0e75726d8a24",
+                "reference": "169a8a4584f54ce4bf997f18590d0e75726d8a24",
                 "shasum": ""
             },
             "require": {
@@ -45,9 +45,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Struktal/struktal-orm/issues",
-                "source": "https://github.com/Struktal/struktal-orm/tree/2.2.0"
+                "source": "https://github.com/Struktal/struktal-orm/tree/2.4.0"
             },
-            "time": "2025-09-12T11:42:39+00:00"
+            "time": "2025-09-13T22:03:18+00:00"
         }
     ],
     "packages-dev": [],
@@ -60,5 +60,5 @@
         "php": ">=8.2.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
