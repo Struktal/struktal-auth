@@ -3,6 +3,7 @@
 namespace struktal\ORM;
 
 use \struktal\Auth\LoginError;
+use \struktal\Auth\PermissionLevel;
 
 class GenericUserDAO extends GenericEntityDAO {
     /**
@@ -44,11 +45,11 @@ class GenericUserDAO extends GenericEntityDAO {
      * @param string $username Username
      * @param string $password Password
      * @param string $email E-Mail
-     * @param int $permissionLevel Permission level
+     * @param PermissionLevel $permissionLevel Permission level
      * @param string $oneTimePassword One-time-password for E-Mail verification
      * @return GenericUser Newly created user
      */
-    public function register(string $username, string $password, string $email, int $permissionLevel, string $oneTimePassword): GenericUser {
+    public function register(string $username, string $password, string $email, PermissionLevel $permissionLevel, string $oneTimePassword): GenericUser {
         $user = new ($this->getClassInstance())();
         $user->setUsername($username);
         $user->setPassword($password);
