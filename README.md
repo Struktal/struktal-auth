@@ -46,15 +46,32 @@ CREATE TABLE IF NOT EXISTS `GenericUser` (
 
 # Usage
 
-At first, create a custom user object that extends the `GenericUser` class:
+At first, create a custom `PermissionLevel` enum to define the permission levels of your application:
+
+```php
+enum PermissionLevel: int implements \struktal\Auth\PermissionLevel {
+    // Examples:
+    case USER = 0;
+    case ADMIN = 1;
+    
+    public function value(): int {
+        return $this->value;
+    }
+}
+```
+
+Then, create a custom user object that extends the `GenericUser` class
 
 ```php
 class User extends \struktal\ORM\GenericUser {
+    #[\struktal\ORM\InheritedType(PermissionLevel::class)]
+    public ?PermissionLevel $permissionLevel = null;
+
     // You can add custom methods or properties here if needed
 }
 ```
 
-Then, create a custom data access object (DAO) that extends the `GenericUserDAO` class:
+and a custom data access object (DAO) that extends the `GenericUserDAO` class
 
 ```php
 class UserDAO extends \struktal\ORM\GenericUserDAO {
@@ -77,7 +94,7 @@ In your application's startup script, you then have to register the custom user 
 
 ## Registering new Users
 
-To register a new user, use the `register()`, which creates a new user object, sets the required fields with the passed parameters, and saves it to the database.
+To register a new user, use the `register()` function, which creates a new user object, sets the required fields with the passed parameters, and saves it to the database.
 
 ## Login and Logout
 
@@ -92,10 +109,11 @@ To log out a user, you can use the `logout()` method from the `\struktal\Auth\Au
 ## Required Login
 
 If you want a user to be logged in when accessing a specific page of your application, use the `enforceLogin()` method from the `\struktal\Auth\Auth` class immediately at the beginning of your script.
-It takes parameters for the minimum required permission level and a redirect URL to which the user will be redirected if they are not logged in or do not have the required permission level.
+It takes parameters for the minimum required permission level (as an enum from your `PermissoinLevel` enum) and a redirect URL to which the user will be redirected if they are not logged in or do not have the required permission level.
 
 ```php
-$user = \struktal\Auth\Auth::enforceLogin(0, Router->generate("nologin"));
+$auth = new \struktal\Auth\Auth();
+$user = $auth->enforceLogin(PermissionLevel::USER, Router->generate("nologin"));
 ```
 
 ## Optional Login
@@ -103,7 +121,8 @@ $user = \struktal\Auth\Auth::enforceLogin(0, Router->generate("nologin"));
 If you only want to retrieve the currently logged-in user without enforcing a login, you can use the `getLoggedInUser()` method from the `\struktal\Auth\Auth` class.
 
 ```php
-$user = \struktal\Auth\Auth::getLoggedInUser();
+$auth = new \struktal\Auth\Auth();
+$user = $auth->getLoggedInUser();
 ```
 
 # Dependencies
@@ -111,7 +130,6 @@ $user = \struktal\Auth\Auth::getLoggedInUser();
 This library uses the following dependencies:
 
 - **ext-pdo**
-- **struktal/struktal-router** - GitHub: [Struktal/struktal-router](https://github.com/Struktal/struktal-router), licensed under [MIT license](https://github.com/Struktal/struktal-router/blob/main/LICENSE)
 - **struktal/struktal-orm** - GitHub: [Struktal/sturktal-orm](https://github.com/Struktal/struktal-orm), licensed under [MIT license](https://github.com/Struktal/struktal-orm/blob/main/LICENSE)
 
 # License

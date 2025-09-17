@@ -28,7 +28,7 @@ class Auth {
      * Checks whether the user is logged in with the session variable
      * @return bool
      */
-    public static function isLoggedIn(): bool {
+    public function isLoggedIn(): bool {
         return !empty($_SESSION["userId"]);
     }
 
@@ -36,7 +36,7 @@ class Auth {
      * Gets the logged-in user, or null if no user is logged in
      * @return GenericUser|null
      */
-    public static function getLoggedInUser(): ?GenericUser {
+    public function getLoggedInUser(): ?GenericUser {
         if(!self::isLoggedIn()) {
             return null;
         }
@@ -59,7 +59,7 @@ class Auth {
      * @param string          $redirect
      * @return GenericUser|null
      */
-    public static function enforceLogin(PermissionLevel $requiredPermissionLevel, string $redirect): ?GenericUser {
+    public function enforceLogin(PermissionLevel $requiredPermissionLevel, string $redirect): ?GenericUser {
         $user = self::getLoggedInUser();
         if(!$user instanceof GenericUser) {
             header("Location: " . $redirect);
@@ -79,7 +79,7 @@ class Auth {
      * @param GenericUser $user
      * @return void
      */
-    public static function login(GenericUser $user): void {
+    public function login(GenericUser $user): void {
         $_SESSION["userId"] = $user->getId();
     }
 
@@ -87,7 +87,7 @@ class Auth {
      * Deletes the session entry for the user to be logged out
      * @return void
      */
-    public static function logout(): void {
+    public function logout(): void {
         unset($_SESSION["userId"]);
     }
 }
