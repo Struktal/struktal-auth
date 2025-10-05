@@ -37,7 +37,7 @@ class Auth {
      * @return GenericUser|null
      */
     public function getLoggedInUser(): ?GenericUser {
-        if(!self::isLoggedIn()) {
+        if(!$this->isLoggedIn()) {
             return null;
         }
 
@@ -49,7 +49,7 @@ class Auth {
             return $user;
         }
 
-        self::logout();
+        $this->sessionLogout();
         return null;
     }
 
@@ -58,9 +58,20 @@ class Auth {
      * @param PermissionLevel $requiredPermissionLevel
      * @param string          $redirect
      * @return GenericUser|null
+     * @deprecated Use requireLogin() instead (enhanced naming consistency)
      */
     public function enforceLogin(PermissionLevel $requiredPermissionLevel, string $redirect): ?GenericUser {
-        $user = self::getLoggedInUser();
+        return $this->requireLogin($requiredPermissionLevel, $redirect);
+    }
+
+    /**
+     * Enforces the user to be logged in with a minimum permission level, and redirects the user if they do not meet the requirements
+     * @param PermissionLevel $requiredPermissionLevel
+     * @param string          $redirect
+     * @return GenericUser|null
+     */
+    public function requireLogin(PermissionLevel $requiredPermissionLevel, string $redirect): ?GenericUser {
+        $user = $this->getLoggedInUser();
         if(!$user instanceof GenericUser) {
             header("Location: " . $redirect);
             exit;
@@ -75,11 +86,44 @@ class Auth {
     }
 
     /**
+     * Checks the provided login credentials and returns the user if they are valid
+     * @param string $login          Username or E-Mail
+     * @param bool   $loginWithEmail Login performed with E-Mail instead of username
+     * @param string $password       Provided password
+     * @return GenericUser|LoginError User or error code if login failed
+     */
+    public function checkLoginCredentials(string $login, bool $loginWithEmail, string $password): GenericUser|LoginError {
+        $filter = [];
+        if($loginWithEmail) {
+            $login = strtolower($login);
+            $filter = [ "email" => $login ];
+        } else {
+            $filter = [ "username" => $login ];
+        }
+
+        $user = (self::$userObjectName)::dao()->getObject($filter);
+
+        if($user instanceof GenericUser) {
+            if(password_verify($password, $user->getPassword())) {
+                if(!$user->getEmailVerified()) {
+                    return LoginError::EMAIL_NOT_VERIFIED;
+                }
+
+                return $user;
+            }
+        } else {
+            return LoginError::USER_NOT_FOUND;
+        }
+
+        return LoginError::INVALID_PASSWORD;
+    }
+
+    /**
      * Sets the session entry for the user to be logged in
      * @param GenericUser $user
      * @return void
      */
-    public function login(GenericUser $user): void {
+    public function sessionLogin(GenericUser $user): void {
         $_SESSION["userId"] = $user->getId();
     }
 
@@ -87,7 +131,7 @@ class Auth {
      * Deletes the session entry for the user to be logged out
      * @return void
      */
-    public function logout(): void {
+    public function sessionLogout(): void {
         unset($_SESSION["userId"]);
     }
 }
